@@ -9,10 +9,11 @@ const createConnectedRouter = (structure) => {
   const { getIn } = structure
   const { getRouter, getLocation } = createSelectors(structure)
   /*
-   * ConnectedRouter listens to a history object passed from props.
-   * When history is changed, it dispatches action to redux store.
+   * ConnectedRouter 监听通过 props 传入的 history 对象
+   * 当 history 发生变化，它向 redux store dispatch action
+   * 然后 store 会向渲染组件传递 props
    * Then, store will pass props to component to render.
-   * This creates uni-directional flow from history->store->router->components.
+   * 这样就形成了 history->store->router->components 的单向数据流
    */
 
   class ConnectedRouter extends Component {
