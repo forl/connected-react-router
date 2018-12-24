@@ -22,6 +22,8 @@ const createConnectedRouter = (structure) => {
 
       this.inTimeTravelling = false
 
+      // 监听 redux store 的变化，当 store 发生变化，就调用 history 的 push 方法同步 
+      // store 中的路由状态，属于 store -> history 的数据同步
       // Subscribe to store changes
       this.unsubscribe = props.store.subscribe(() => {
         // Extract store's location
@@ -58,6 +60,8 @@ const createConnectedRouter = (structure) => {
         }
       }
 
+      // 监听 history 变化，handleLocationChange 做的事情就是向redux store dispatch
+      // history 发生变化的 action，属于 history -> store 的同步
       // Listen to history changes
       this.unlisten = props.history.listen(handleLocationChange)
       // Dispatch a location change action for the initial location
